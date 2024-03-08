@@ -39,3 +39,7 @@ export function galleryElements(element, galleryEl) {
     .join('');
   galleryEl.insertAdjacentHTML('beforeend', markup);
 }
+
+export function resetPage() {
+  gallery.innerHTML = null;
+}

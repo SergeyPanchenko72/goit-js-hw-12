@@ -6,7 +6,7 @@ export async function getsGalleryImg(pageNumber, inputValue) {
   const { data } = await axios.get('', {
     params: {
       page: pageNumber,
-      per_page: 5,
+      per_page: 15,
       key: API_KEY,
       q: inputValue,
       image_type: 'photo',
