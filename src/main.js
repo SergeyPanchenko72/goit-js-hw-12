@@ -1,12 +1,8 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
 import { getsGalleryImg } from './js/pixabay-api';
-import { galleryElements } from './js/render-functions';
-import cross from './img/error.svg';
+import { galleryElements, getInformMessage } from './js/render-functions';
+// import cross from './img/error.svg';
 
 const formSearch = document.querySelector('.form');
 const inputSearch = document.querySelector('input');
@@ -41,18 +37,11 @@ async function onformSearchSubmit(event) {
     const data = await getsGalleryImg(pageNumber, inputValue);
 
     if (data.total === 0) {
-      iziToast.error({
-        iconUrl: cross,
-        messageColor: '#ffffff',
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        backgroundColor: '#EF4040',
-        position: 'topRight',
-        messageSize: 16,
-        layout: 2,
-        maxWidth: 380,
-        theme: 'dark',
-      });
+      getInformMessage(
+        'Sorry, there are no images matching your search query. Please try again!',
+        '#EF4040'
+      );
+
       loaderForm.classList.remove('loader');
       loadMoreBtn.classList.add('hidden');
       return;
@@ -77,22 +66,13 @@ async function onLoadingImg(event) {
   loadingMore.classList.add('loader');
   try {
     const data = await getsGalleryImg(pageNumber, inputValue);
-    // console.log(pageNumber);
-    // console.log(data.totalHits);
-    // console.log(data.totalHits / 15);
+
     if (data.totalHits / 15 <= pageNumber || pageNumber * 15 >= 500) {
       loadMoreBtn.classList.add('hidden');
-      iziToast.error({
-        iconUrl: cross,
-        messageColor: '#ffffff',
-        message: "We're sorry, but you've reached the end of search results.",
-        backgroundColor: 'blue',
-        position: 'topRight',
-        messageSize: 16,
-        layout: 2,
-        maxWidth: 380,
-        theme: 'dark',
-      });
+      getInformMessage(
+        "We're sorry, but you've reached the end of search results.",
+        'blue'
+      );
     }
 
     galleryElements(data.hits, gallery);

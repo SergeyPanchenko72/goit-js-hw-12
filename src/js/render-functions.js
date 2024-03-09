@@ -1,3 +1,7 @@
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import cross from '../img/error.svg';
+
 export function galleryElements(element, galleryEl) {
   const markup = element
     .map(
@@ -35,4 +39,18 @@ export function galleryElements(element, galleryEl) {
     )
     .join('');
   galleryEl.insertAdjacentHTML('beforeend', markup);
+}
+
+export function getInformMessage(message, backgroundColor) {
+  iziToast.error({
+    iconUrl: cross,
+    messageColor: '#ffffff',
+    message: message,
+    backgroundColor: backgroundColor,
+    position: 'topRight',
+    messageSize: 16,
+    layout: 2,
+    maxWidth: 380,
+    theme: 'dark',
+  });
 }
