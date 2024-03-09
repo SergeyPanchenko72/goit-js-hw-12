@@ -1,7 +1,4 @@
-import { gallery, loaderForm } from '../main';
-
 export function galleryElements(element, galleryEl) {
-  loaderForm.classList.remove('loader');
   const markup = element
     .map(
       ({
@@ -38,8 +35,4 @@ export function galleryElements(element, galleryEl) {
     )
     .join('');
   galleryEl.insertAdjacentHTML('beforeend', markup);
-}
-
-export function resetPage() {
-  gallery.innerHTML = null;
 }

@@ -142,3 +142,7 @@ button:hover {
   text-align: center;
   margin: 32px auto;
 }
+
+.hidden {
+  display: none;
+}
