@@ -27,6 +27,7 @@ async function onformSearchSubmit(event) {
   event.preventDefault();
   pageNumber = 1;
   inputValue = inputSearch.value.trim();
+  inputSearch.value = '';
   if (inputValue === '') {
     return;
   }
@@ -56,7 +57,6 @@ async function onformSearchSubmit(event) {
   } catch (error) {
     console.log(error);
   }
-  inputSearch.value = '';
 }
 
 loadMoreBtn.addEventListener('click', onLoadingImg);
