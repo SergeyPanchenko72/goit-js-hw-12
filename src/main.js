@@ -52,6 +52,13 @@ async function onformSearchSubmit(event) {
     loaderForm.classList.remove('loader');
     loadMoreBtn.classList.remove('hidden');
     lightbox.refresh();
+    if (data.totalHits / 15 <= pageNumber) {
+      loadMoreBtn.classList.add('hidden');
+      getInformMessage(
+        "We're sorry, but you've reached the end of search results.",
+        'blue'
+      );
+    }
     const cart = document.querySelector('.gallery-item');
     scrollValue = cart.getBoundingClientRect().height * 2 + 48;
   } catch (error) {
